@@ -1,0 +1,35 @@
+{% extends 'user.html' %}
+{% load crispy_forms_tags %}
+
+    
+    {% block title %}
+        Update
+    {% endblock title %}
+    
+    {% block heading %}
+        My Profile
+    {% endblock heading %}
+
+    {% block content %}
+
+    <div class="card shadow mb-4 w-6 my-0 mx-auto" style="max-width: 700px;">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Update Profile</h5>
+        </div>
+        <div class="card-body my-0 mx-auto">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+
+                <fieldset class="form-group">
+                    {{form|crispy}}
+                </fieldset>
+                    
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Update</button>
+                    <a href="{% url 'user_profile' %}" class="btn btn-primary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+    {% endblock content %}

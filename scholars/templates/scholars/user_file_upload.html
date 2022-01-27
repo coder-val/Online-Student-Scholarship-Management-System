@@ -1,0 +1,33 @@
+{% extends 'user.html' %}
+
+    
+    {% block title %}
+        Upload File
+    {% endblock title %}
+    
+    {% block heading %}
+        File Manager
+    {% endblock heading %}
+
+    {% block content %}
+
+    <div class="card shadow mb-4 w-50 my-0 mx-auto">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Upload File</h5>
+        </div>
+        <div class="card-body my-0 mx-auto">
+            <form action="{% url 'user_file_upload_check' zipFile.id %}" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    <label for="zip_file">Upload your file here.</label><br>
+                    <input type="file" accept=".zip" name="zip_file" id="" required>
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Submit</button>
+                    <a href="{% url 'user_page' %}" class="btn btn-primary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+    {% endblock content %}

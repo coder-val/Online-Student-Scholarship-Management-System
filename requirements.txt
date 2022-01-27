@@ -1,0 +1,10 @@
+asgiref==3.4.1
+beautifulsoup4==4.10.0
+Django==4.0.1
+django-bootstrap-v5==1.0.8
+django-crispy-forms==1.14.0
+mysql==0.0.3
+mysqlclient==2.1.0
+soupsieve==2.3.1
+sqlparse==0.4.2
+tzdata==2021.5

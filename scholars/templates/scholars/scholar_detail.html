@@ -1,0 +1,80 @@
+{% extends 'main.html' %}
+
+    
+    {% block title %}
+        Scholar Details
+    {% endblock title %}
+    
+    {% block heading %}
+        List of Students
+    {% endblock heading %}
+
+    {% block content %}
+
+    <div class="card shadow mb-4 w-50 my-0 mx-auto">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Scholar Details</h5>
+        </div>
+        <div class="card-body my-0 mx-auto">
+            <table class="table">
+                <tr>
+                    <td class="text-right"><strong>Student ID:</strong></td>
+                    <td>{{scholars.student_ID}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Last Name:</strong></strong></td>
+                    <td>{{scholars.last_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>First Name:</strong></strong></td>
+                    <td>{{scholars.first_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Middle Name:</strong></strong></td>
+                    <td>{{scholars.middle_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Contact:</strong></strong></td>
+                    <td>{{scholars.contact_number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>College:</strong></strong></td>
+                    
+                    {% if scholars.college == 'CA' %}
+                    <td>College of Agriculture</td>
+                    {% elif scholars.college == 'CBEA' %}
+                    <td>College of Business<br>Entrepreneurship and Accountancy</td>
+                    {% elif scholars.college == 'CCJE' %}
+                    <td>College of Criminal Justice Education</td>
+                    {% elif scholars.college == 'CHM' %}
+                    <td>College of Hospitality Management</td>
+                    {% elif scholars.college == 'CICS' %}
+                    <td>College of Information and<br>Computing Sciences</td>
+                    {% elif scholars.college == 'CTE' %}
+                    <td>College of Teacher Education</td>
+                    {% endif %}
+                        
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Year:</strong></strong></td>
+                    <td>{{scholars.college_year}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Program:</strong></strong></td>
+                    {% if scholars.scholarship_program == 'CHED-TDP' %}
+                    <td>CHED | Tulong-Dunong Program</td>
+                    {% elif scholars.scholarship_program == 'CHED-TES' %}
+                    <td>CHED | Tertiary Education Subsidy</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Remarks:</strong></strong></td>
+                    <td>{{scholars.remarks}}</td>
+                </tr>
+            </table>
+            <a href="{% url 'scholar_update' scholars.id %}" class="btn btn-warning">Modify</a>
+            <a href="{% url 'scholar_list' %}" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+        
+    {% endblock content %}

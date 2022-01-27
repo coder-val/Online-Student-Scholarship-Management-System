@@ -1,0 +1,38 @@
+{% extends 'main.html' %}
+{% load crispy_forms_tags %}
+
+    
+    {% block title %}
+        Update Scholar
+    {% endblock title %}
+    
+    {% block heading %}
+        List of Students
+    {% endblock heading %}
+
+    {% block content %}
+    <style>
+        #div_id_student_ID {
+            display: none;
+        }
+    </style>
+
+    <div class="card shadow mb-4 my-0 mx-auto" style="max-width: 700px;">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Update Scholar</h5>
+        </div>
+        <div class="card-body my-0 mx-auto">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form | crispy }}
+                </fieldset>
+                <div class="form-group">
+                    <button class="btn btn-success" type="submit">Update</button>
+                    <a href="{% url 'scholar_list' %}" class="btn btn-primary">Back</a>
+                </div>
+            </form>
+        </div>
+    </div>
+        
+    {% endblock content %}

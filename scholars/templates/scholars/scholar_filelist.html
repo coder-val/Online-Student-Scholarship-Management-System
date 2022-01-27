@@ -1,0 +1,75 @@
+{% extends 'masterlist.html' %}
+
+    
+    {% block title %}
+        File Manager
+    {% endblock title %}
+
+    
+    {% block heading %}
+        File Manager
+    {% endblock heading %}
+
+    
+    {% block tablename %}
+        Student Files
+    {% endblock tablename %}
+        
+    {% block content %}
+
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Remarks</th>
+                <th>Files</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Program</th>
+                <th>Remarks</th>
+                <th>Files</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for scholar in scholars %}
+            <tr>
+                <td> {{scholar.student_ID}} </td>
+                <td> {{scholar.last_name}}, {{scholar.first_name}} {{scholar.middle_name}} </td>
+                <td> {{scholar.scholarship_program}} </td>
+                {% if scholar.remarks == 'OK' %}
+                <td class="text-success"><strong> {{scholar.remarks}} </strong></td>
+                {% elif scholar.remarks == 'PENDING' %}
+                <td class="text-warning"><strong> {{scholar.remarks}} </strong></td>
+                {% else %}
+                <td class="text-info"><strong> {{scholar.remarks}} </strong></td>
+                {% endif %}
+                <td>
+                    
+                    {% if scholar.zip_file.name %}
+                    {{scholar.zip_file.name}}
+                    {% else %}
+                    <span class="text-muted">None</span>
+                    {% endif %}
+                        
+                </td>   
+                <td> 
+                    {% if scholar.zip_file %}
+                        <a class="btn btn-success" href="{{scholar.zip_file.url}}" title="Download file"><i class="fas fa-download"></i></a>
+                        <a class="btn btn-warning" href="{% url 'file_update' scholar.id %}" title="Update file"><i class="fas fa-edit"></i></a>
+                        <a class="btn btn-danger" href="{% url 'file_delete' scholar.id %}" title="Delete file"><i class="fas fa-trash alt"></i></a>
+                    {% else %}
+                    <a href="{% url 'file_upload' scholar.id %}" class="btn btn-secondary" title="Upload file"><i class="fas fa-file-upload"></i></a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    {% endblock content %}

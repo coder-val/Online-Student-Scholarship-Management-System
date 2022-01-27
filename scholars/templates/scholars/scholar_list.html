@@ -1,0 +1,70 @@
+{% extends 'masterlist.html' %}
+
+    
+    {% block title %}
+        Scholars
+    {% endblock title %}
+
+    
+    {% block heading %}
+        List of Students
+    {% endblock heading %}
+
+    
+    {% block tablename %}
+        Student Records
+    {% endblock tablename %}
+        
+    {% block content %}
+
+    <a href="{% url 'scholar_create' %}" class="btn btn-primary mb-3" title="Create New Scholar">Create New</a>
+        <thead>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>College</th>
+                <th>Year</th>
+                <th>Program</th>
+                <th>Remarks</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Student ID</th>
+                <th>Name</th>
+                <th>Contact</th>
+                <th>College</th>
+                <th>Year</th>
+                <th>Program</th>
+                <th>Remarks</th>
+                <th>Actions</th>
+            </tr>
+        </tfoot>
+        <tbody>
+            {% for scholar in scholars %}
+            <tr>
+                <td> {{scholar.student_ID}} </td>
+                <td> {{scholar.last_name}}, {{scholar.first_name}} {{scholar.middle_name}} </td>
+                <td> {{scholar.contact_number}} </td>
+                <td> {{scholar.college}} </td>
+                <td> {{scholar.college_year}} </td>
+                <td> {{scholar.scholarship_program}} </td>
+                {% if scholar.remarks == 'OK' %}
+                <td class="text-success "><strong> {{scholar.remarks}} </strong></td>
+                {% elif scholar.remarks == 'PENDING' %}
+                <td class="text-warning"><strong> {{scholar.remarks}} </strong></td>
+                {% else %}
+                <td class="text-info"><strong> {{scholar.remarks}} </strong></td>
+                {% endif %}
+                <td>
+                    <a href="{% url 'scholar_detail' scholar.id %}" class="btn btn-primary" title="View"><i class="fas fa-eye"></i></a>
+                    <a href="{% url 'scholar_update' scholar.id %}" class="btn btn-warning" title="Update"><i class="fas fa-edit"></i></a>
+                    <a href="{% url 'scholar_delete' scholar.student_ID_id %}" class="btn btn-danger" title="Delete"><i class="fas fa-trash-alt"></i></a>
+                </td>    
+            </tr>
+            {% endfor %}
+        </tbody>
+        
+    {% endblock content %}

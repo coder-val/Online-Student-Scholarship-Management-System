@@ -1,0 +1,80 @@
+{% extends 'user.html' %}
+
+    
+    {% block title %}
+        My Profile
+    {% endblock title %}
+    
+    {% block heading %}
+        My Profile
+    {% endblock heading %}
+
+    {% block content %}
+
+    <div class="card shadow mb-4  my-0 mx-auto" style="max-width: 700px;">
+        <div class="card-header py-3">
+            <h5 class="m-0 font-weight-bold text-primary">Profile Details</h5>
+        </div>
+        <div class="card-body my-0 mx-auto">
+            <table class="table">
+                <tr>
+                    <td class="text-right"><strong>Student ID:</strong></td>
+                    <td>{{request.user.scholar.student_ID}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Last Name:</strong></strong></td>
+                    <td>{{request.user.scholar.last_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>First Name:</strong></strong></td>
+                    <td>{{request.user.scholar.first_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Middle Name:</strong></strong></td>
+                    <td>{{request.user.scholar.middle_name}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Contact:</strong></strong></td>
+                    <td>{{request.user.scholar.contact_number}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>College:</strong></strong></td>
+                    
+                    {% if request.user.scholar.college == 'CA' %}
+                    <td>College of Agriculture</td>
+                    {% elif request.user.scholar.college == 'CBEA' %}
+                    <td>College of Business>Entrepreneurship and Accountancy</td>
+                    {% elif request.user.scholar.college == 'CCJE' %}
+                    <td>College of Criminal Justice Education</td>
+                    {% elif request.user.scholar.college == 'CHM' %}
+                    <td>College of Hospitality Management</td>
+                    {% elif request.user.scholar.college == 'CICS' %}
+                    <td>College of Information andComputing Sciences</td>
+                    {% elif request.user.scholar.college == 'CTE' %}
+                    <td>College of Teacher Education</td>
+                    {% endif %}
+                        
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Year:</strong></strong></td>
+                    <td>{{request.user.scholar.college_year}}</td>
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Program:</strong></strong></td>
+                    {% if request.user.scholar.scholarship_program == 'CHED-TDP' %}
+                    <td>CHED | Tulong-Dunong Program</td>
+                    {% elif request.user.scholar.scholarship_program == 'CHED-TES' %}
+                    <td>CHED | Tertiary Education Subsidy</td>
+                    {% endif %}
+                </tr>
+                <tr>
+                    <td class="text-right"><strong>Remarks:</strong></strong></td>
+                    <td>{{request.user.scholar.remarks}}</td>
+                </tr>
+            </table>
+            <a href="{% url 'user_profile_update' request.user.scholar.id %}" class="btn btn-info">Modify</a>
+            <a href="{% url 'user_page' %}" class="btn btn-primary">Back</a>
+        </div>
+    </div>
+        
+    {% endblock content %}

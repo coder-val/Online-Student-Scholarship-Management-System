@@ -1,0 +1,149 @@
+{% extends 'user.html' %}
+{% load static %}
+
+    
+    {% block title %}
+        Home
+    {% endblock title %}
+    
+    {% block heading %}
+    {{request.user.scholar.student_ID}}
+    {% endblock heading %}
+    
+    {% block content %}
+
+    <div class="row">
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-success shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-success text-uppercase mb-1">
+                                My Remarks</div>
+                            
+                                
+                                {% if request.user.scholar.remarks == 'NEW' %}
+                                <div class="h5 mb-0 font-weight-bold text-center text-info">{{request.user.scholar.remarks}}</div>
+                                {% elif request.user.scholar.remarks == 'PENDING' %}
+                                <div class="h5 mb-0 font-weight-bold text-center text-warning">{{request.user.scholar.remarks}}</div>
+                                {% else %}
+                                <div class="h5 mb-0 font-weight-bold text-center text-success">{{request.user.scholar.remarks}}</div>
+                                {% endif %}
+                                    
+
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Earnings (Monthly) Card Example -->
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-primary shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-primary text-uppercase mb-1">
+                                Scholars</div>
+                            <div class="h5 mb-0 font-weight-bold text-center text-gray-800">{{scholar_count}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-graduation-cap fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-dark text-uppercase mb-1">
+                                CHED-TDP</div>
+                            <div class="h5 mb-0 font-weight-bold text-center text-gray-800">{{program_tdp}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-xl-3 col-md-6 mb-4">
+            <div class="card border-left-info shadow h-100 py-2">
+                <div class="card-body">
+                    <div class="row no-gutters align-items-center">
+                        <div class="col mr-2">
+                            <div class="text-s font-weight-bold text-dark text-uppercase mb-1">
+                                CHED-TES</div>
+                            <div class="h5 mb-0 font-weight-bold text-center text-gray-800">{{program_tes}}</div>
+                        </div>
+                        <div class="col-auto">
+                            <i class="fas fa-user-graduate fa-2x text-gray-300"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="row">
+
+        <div class="col-lg-6 mb-4">
+
+            <div class="card shadow mb-4">
+                <!-- Card Header - Accordion -->
+                <a href="#collapseCardExample" class="d-block card-header py-3" data-toggle="collapse"
+                    role="button" aria-expanded="true" aria-controls="collapseCardExample">
+                    <h6 class="m-0 font-weight-bold text-primary">Reminder</h6>
+                </a>
+                <!-- Card Content - Collapse -->
+                <div class="collapse show" id="collapseCardExample">
+                    <div class="card-body">
+                        <h5><strong>TO ALL ONGOING TDP-TES GRANTEES</strong></h5>
+                        The CHEDRO2-UniFAST is currently validating and verifying the documentary requirements of <span><strong>Ongoing TDP-TES Grantees for the Second Semester of AY 2020-2021.</strong></span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Update Your Profile</h6>
+                </div>
+                <div class="card-body">
+                    Keep your profile up to date for faster validation of documentary requirements.
+                    <div><a href="{% url 'user_profile' %}" class="btn btn-info float-right">Go to profile</a></div>
+                </div>
+                
+            </div>
+            
+        </div>
+
+        <div class="col-lg-6 mb-4">
+
+            <!-- Illustrations -->
+            <div class="card shadow mb-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Hello {{request.user.scholar.first_name}} !</h6>
+                </div>
+                <div class="card-body">
+                    <div class="text-center">
+                        <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;"
+                            src="{% static 'img/undraw_education_f8ru.svg' %}" alt="...">
+                    </div>
+                    <p class="mb-0">Always <strong>remember</strong>, your <strong>focus</strong> determines your <strong>reality</strong>.</p>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    {% endblock content %}
